@@ -11,10 +11,15 @@ namespace SocialConsole
         {
             while (true)
             {
-                Console.WriteLine("> ");
+                Console.Write("> ");
                 var input = Console.ReadLine();
 
-                MessageHandler.Process(input);
+                var response = MessageHandler.Process(input);
+
+                foreach (var item in response)
+                {
+                    Console.WriteLine(item);
+                }
             }
         }
     }

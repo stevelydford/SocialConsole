@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SocialConsole
 {
     public class MessageHandler
     {
+        public List<string> Arguments { get; set; }
+
         public List<string> Process(string input)
         {
-            return new List<string>();
+            Arguments = input.Split(' ').ToList();
+            return Arguments;
         }
     }
 }
