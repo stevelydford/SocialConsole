@@ -15,11 +15,25 @@ namespace SocialConsole
         public List<string> Process(string input)
         {
             var arguments = ParseArguments(input);
-
-            _userRepository.RegisterUser(arguments[0]);
-
             var response = new List<string>();
+            var user = _userRepository.RegisterUser(arguments[0]);
+
+            if (arguments.Count == 1)
+            {
+                response.AddRange(user.Messages);
+            }
+            else if (arguments[1] == "->")
+            {
+                AddUserMessage(arguments, user);
+            }
+
             return response;
+        }
+
+        private static void AddUserMessage(IReadOnlyCollection<string> arguments, User user)
+        {
+            var message = string.Join(" ", arguments.Skip(2).Take(arguments.Count - 2));
+            user.Messages.Add(message);
         }
 
         private static List<string> ParseArguments(string input)

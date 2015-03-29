@@ -12,5 +12,13 @@ namespace SocialConsole.Tests
 
             Assert.That(user.Name, Is.EqualTo("test"));
         }
+
+        [Test]
+        public void HaveANewListOfMessagesCreatedOnInstantiation()
+        {
+            var user = new User("test");
+
+            Assert.That(user.Messages, Is.Not.Null);
+        }
     }
 }

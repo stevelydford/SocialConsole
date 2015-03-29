@@ -32,5 +32,31 @@ namespace SocialConsole.Tests
 
             Assert.That(_userRepository.GetUser("alice"), Is.Not.Null);
         }
+
+        [Test]
+        public void AddAMessageToAUserWhenAsked()
+        {
+            _messageHandler.Process("alice -> this is a test");
+
+            Assert.That(_userRepository.GetUser("alice").Messages.Count == 1);
+        }
+        
+        [Test]
+        public void RetrieveAllMessagesForAUserWhenAsked()
+        {
+            _messageHandler.Process("alice -> this is a test");
+            var result = _messageHandler.Process("alice");
+            
+            Assert.That(result[0], Is.EqualTo("this is a test"));
+        }
+
+        [Test]
+        public void ReturnAnEmptyListWhenAskedToRetrieveAllMessagesForAUserWithNoMessages()
+        {
+            _messageHandler.Process("alice -> this is a test");
+            var result = _messageHandler.Process("bob");
+
+            Assert.That(result.Count, Is.EqualTo(0));
+        }
     }
 }

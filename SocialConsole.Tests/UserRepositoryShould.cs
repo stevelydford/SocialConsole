@@ -21,6 +21,22 @@ namespace SocialConsole.Tests
         }
 
         [Test]
+        public void ReturnANewlyRegisteredUserToTheCaller()
+        {
+            var newUser = _userRepository.RegisterUser("alice");
+            Assert.That(newUser.Name, Is.EqualTo("alice"));
+        }
+
+        [Test]
+        public void HaveAnIdempotentRegistrationMethod()
+        {
+            var newUser1 = _userRepository.RegisterUser("alice");
+            var newUser2 = _userRepository.RegisterUser("alice");
+
+            Assert.That(newUser1.Name, Is.EqualTo(newUser2.Name));
+        }
+
+        [Test]
         public void NotReRegisterAnExisitingUser()
         {
             _userRepository.RegisterUser("alice");
@@ -37,6 +53,11 @@ namespace SocialConsole.Tests
             Assert.That(_userRepository.GetAllUsers().Count, Is.EqualTo(2));
         }
 
+        [Test]
+        public void ShouldReturnAllMessagesForAUserWhenAsked()
+        {
+            _userRepository.RegisterUser("alice");
 
+        }
     }
 }

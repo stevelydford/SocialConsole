@@ -6,6 +6,6 @@ namespace SocialConsole
     {
         List<User> GetAllUsers();
         User GetUser(string userName);
-        void RegisterUser(string userName);
+        User RegisterUser(string userName);
     }
 }

@@ -12,12 +12,17 @@ namespace SocialConsole
             _users = new List<User>();
         }
 
-        public void RegisterUser(string userName)
+        public User RegisterUser(string userName)
         {
-            if (GetUser(userName) == null)
+            var user = GetUser(userName);
+
+            if (user == null)
             {
-                _users.Add(new User(userName));
+                user = new User(userName);
+                _users.Add(user);
             }
+
+            return user;
         }
 
         public User GetUser(string userName)
@@ -29,5 +34,7 @@ namespace SocialConsole
         {
             return _users;
         }
+
+
     }
 }
