@@ -6,11 +6,13 @@ namespace SocialConsole.Tests
     public class MessageHandlerShould
     {
         private MessageHandler _messageHandler;
+        private UserRepository _userRepository;
 
         [SetUp]
         public void Init()
         {
-            _messageHandler = new MessageHandler();
+            _userRepository = new UserRepository();
+            _messageHandler = new MessageHandler(_userRepository);
         }
 
         [Test]
@@ -24,36 +26,11 @@ namespace SocialConsole.Tests
         }
 
         [Test]
-        public void SpiltInputStringBySpacesAndStoreAsListArguments()
+        public void AttemptToAddANonRegisteredUser()
         {
-            _messageHandler.Process("alice follows bob");
+            _messageHandler.Process("alice");
 
-            var result = _messageHandler.Arguments;
-
-            Assert.That(result.Count, Is.EqualTo(3));
-            Assert.That(result[0], Is.EqualTo("alice"));
-            Assert.That(result[1], Is.EqualTo("follows"));
-            Assert.That(result[2], Is.EqualTo("bob"));
+            Assert.That(_userRepository.GetUser("alice"), Is.Not.Null);
         }
-
-        [Test]
-        public void CreateANewUserAsNamedInTheFirstArgument()
-        {
-            _messageHandler.Process("alice follows bob");
-
-            Assert.That(_messageHandler.Users[0].Name, Is.EqualTo("alice"));
-        }
-
-        [Test]
-        public void NotCreateAUserThatAlreadyExists()
-        {
-            _messageHandler.Users.Add(new User("alice"));
-
-            _messageHandler.Process("alice follows bob");
-
-            Assert.That(_messageHandler.Users.Count, Is.EqualTo(1));
-        }
-
-
     }
 }

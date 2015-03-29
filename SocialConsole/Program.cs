@@ -5,7 +5,7 @@ namespace SocialConsole
 {
     public class Program
     {
-        private static readonly MessageHandler MessageHandler = new MessageHandler();
+        private static readonly MessageHandler MessageHandler = new MessageHandler(new UserRepository());
 
         static void Main(string[] args)
         {

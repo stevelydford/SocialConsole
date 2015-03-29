@@ -45,6 +45,7 @@
     <Compile Include="MessageHandlerShould.cs" />
     <Compile Include="ProgramShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserRepositoryShould.cs" />
     <Compile Include="UserShould.cs" />
   </ItemGroup>
   <ItemGroup>

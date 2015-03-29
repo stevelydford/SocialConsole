@@ -9,7 +9,7 @@ namespace SocialConsole.Tests
         [Test]
         public void SendTheUserInputToTheMessageHandlerAndReceiveAListOfStringsInResponse()
         {
-            var messageHandler = new MessageHandler();
+            var messageHandler = new MessageHandler(new UserRepository());
             var inputString = "alice follows bob";
 
             var result = messageHandler.Process(inputString);

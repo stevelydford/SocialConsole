@@ -5,28 +5,26 @@ namespace SocialConsole
 {
     public class MessageHandler
     {
-        public List<User> Users { get; set; }
+        private readonly IUserRepository _userRepository; 
 
-        public List<string> Arguments { get; set; }
-
-        public MessageHandler()
+        public MessageHandler(IUserRepository userRepository)
         {
-            Users = new List<User>();
+            _userRepository = userRepository;
         }
 
         public List<string> Process(string input)
         {
-            Arguments = input.Split(' ').ToList();
+            var arguments = ParseArguments(input);
 
-            if (Users.FirstOrDefault(x => x.Name == Arguments[0]) == null)
-            {
-                Users.Add(new User(Arguments[0]));
-            }
+            _userRepository.RegisterUser(arguments[0]);
 
             var response = new List<string>();
             return response;
+        }
 
-
+        private static List<string> ParseArguments(string input)
+        {
+            return input.Split(' ').ToList();
         }
     }
 }
