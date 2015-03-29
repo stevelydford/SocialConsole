@@ -6,6 +6,7 @@ namespace SocialConsole.Tests
     [TestFixture]
     public class ProgramShould
     {
+        [Test]
         public void SendTheUserInputToTheMessageHandlerAndReceiveAListOfStringsInResponse()
         {
             var messageHandler = new MessageHandler();
