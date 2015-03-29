@@ -20,20 +20,20 @@ namespace SocialConsole
 
             if (arguments.Count == 1)
             {
-                response.AddRange(user.Messages);
+                response.AddRange(user.GetPosts().Select(post => post.Body));
             }
             else if (arguments[1] == "->")
             {
-                AddUserMessage(arguments, user);
+                AddUserPost(arguments, user);
             }
 
             return response;
         }
 
-        private static void AddUserMessage(IReadOnlyCollection<string> arguments, User user)
+        private static void AddUserPost(IReadOnlyCollection<string> arguments, User user)
         {
-            var message = string.Join(" ", arguments.Skip(2).Take(arguments.Count - 2));
-            user.Messages.Add(message);
+            var post = string.Join(" ", arguments.Skip(2).Take(arguments.Count - 2));
+            user.AddPost(post);
         }
 
         private static List<string> ParseArguments(string input)

@@ -7,12 +7,22 @@ namespace SocialConsole
     {
         public string Name { get; set; }
 
-        public List<string> Posts { get; set; }
+        private readonly List<Post> _posts;
 
         public User(string name)
         {
             Name = name;
-            Posts = new List<string>();
+            _posts = new List<Post>();
+        }
+
+        public void AddPost(string body)
+        {
+            _posts.Add(new Post(body));
+        }
+
+        public List<Post> GetPosts()
+        {
+            return _posts;
         }
     }
 }

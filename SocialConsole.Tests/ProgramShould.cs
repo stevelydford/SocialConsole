@@ -10,7 +10,7 @@ namespace SocialConsole.Tests
         public void SendTheUserInputToTheMessageHandlerAndReceiveAListOfStringsInResponse()
         {
             var messageHandler = new MessageHandler(new UserRepository());
-            var inputString = "alice follows bob";
+            const string inputString = "alice follows bob";
 
             var result = messageHandler.Process(inputString);
             Assert.That(result, Is.TypeOf<List<string>>());

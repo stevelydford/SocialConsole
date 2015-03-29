@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace SocialConsole.Tests
 {
@@ -14,11 +15,32 @@ namespace SocialConsole.Tests
         }
 
         [Test]
-        public void HaveANewListOfMessagesCreatedOnInstantiation()
+        public void HaveANewListOfPostsCreatedOnInstantiation()
         {
             var user = new User("test");
 
-            Assert.That(user.Messages, Is.Not.Null);
+            Assert.That(user.GetPosts(), Is.Not.Null);
+        }
+
+        [Test]
+        public void TimestampPosts()
+        {
+            var user = new User("test");
+
+            user.AddPost("this is a test");
+
+            Assert.That(user.GetPosts()[0].TimeStamp, Is.GreaterThan(DateTime.Now.AddMinutes(-1)));
+        }
+
+        [Test]
+        public void ReturnAllPostsWhenRequested()
+        {
+            var user = new User("test");
+            user.AddPost("test post 1");
+            user.AddPost("test post 2");
+            user.AddPost("test post 3");
+
+            Assert.That(user.GetPosts().Count, Is.EqualTo(3));
         }
     }
 }

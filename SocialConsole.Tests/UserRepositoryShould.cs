@@ -52,12 +52,5 @@ namespace SocialConsole.Tests
             _userRepository.RegisterUser("bob");
             Assert.That(_userRepository.GetAllUsers().Count, Is.EqualTo(2));
         }
-
-        [Test]
-        public void ShouldReturnAllMessagesForAUserWhenAsked()
-        {
-            _userRepository.RegisterUser("alice");
-
-        }
     }
 }

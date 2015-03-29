@@ -34,15 +34,15 @@ namespace SocialConsole.Tests
         }
 
         [Test]
-        public void AddAMessageToAUserWhenAsked()
+        public void AddAPostToAUserWhenAsked()
         {
             _messageHandler.Process("alice -> this is a test");
 
-            Assert.That(_userRepository.GetUser("alice").Messages.Count == 1);
+            Assert.That(_userRepository.GetUser("alice").GetPosts().Count == 1);
         }
         
         [Test]
-        public void RetrieveAllMessagesForAUserWhenAsked()
+        public void RetrieveAllPostsForAUserWhenAsked()
         {
             _messageHandler.Process("alice -> this is a test");
             var result = _messageHandler.Process("alice");
@@ -51,7 +51,7 @@ namespace SocialConsole.Tests
         }
 
         [Test]
-        public void ReturnAnEmptyListWhenAskedToRetrieveAllMessagesForAUserWithNoMessages()
+        public void ReturnAnEmptyListWhenAskedToRetrieveAllPostsForAUserThatHasNoPosts()
         {
             _messageHandler.Process("alice -> this is a test");
             var result = _messageHandler.Process("bob");
