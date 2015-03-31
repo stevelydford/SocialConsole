@@ -19,7 +19,6 @@ namespace SocialConsole.Tests
         public void ProcessAnInputStringAndReturnAListOfStrings()
         {
             const string input = "test";
-
             var result = _messageHandler.Process(input);
 
             Assert.That(result, Is.All.InstanceOf(typeof(string)));

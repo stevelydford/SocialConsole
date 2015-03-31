@@ -26,10 +26,9 @@ namespace SocialConsole.Tests
         public void TimestampPosts()
         {
             var user = new User("test");
-
             user.AddPost("this is a test");
 
-            Assert.That(user.GetPosts()[0].TimeStamp, Is.GreaterThan(DateTime.Now.AddMinutes(-1)));
+            Assert.That(user.GetPosts()[0].Timestamp, Is.GreaterThan(DateTime.Now.AddMinutes(-1)));
         }
 
         [Test]

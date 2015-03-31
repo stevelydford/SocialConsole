@@ -1,14 +1,13 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SocialConsole
 {
     public class User
     {
-        public string Name { get; set; }
-
         private readonly List<Post> _posts;
-
+        
+        public string Name { get; set; }
+        
         public User(string name)
         {
             Name = name;

@@ -14,7 +14,6 @@ namespace SocialConsole.Tests
 
             var result = messageHandler.Process(inputString);
             Assert.That(result, Is.TypeOf<List<string>>());
-
         }
     }
 }
