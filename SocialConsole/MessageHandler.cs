@@ -20,7 +20,7 @@ namespace SocialConsole
 
             if (arguments.Count == 1)
             {
-                response.AddRange(user.GetPosts().Select(post => post.Body));
+                response.AddRange(user.GetPosts().Select(post => post.ToString()));
             }
             else if (arguments[1] == "->")
             {

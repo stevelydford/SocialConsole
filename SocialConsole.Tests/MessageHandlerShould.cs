@@ -46,7 +46,7 @@ namespace SocialConsole.Tests
             _messageHandler.Process("alice -> this is a test");
             var result = _messageHandler.Process("alice");
             
-            Assert.That(result[0], Is.EqualTo("this is a test"));
+            Assert.That(result[0], Is.EqualTo("this is a test (0 seconds ago)"));
         }
 
         [Test]
