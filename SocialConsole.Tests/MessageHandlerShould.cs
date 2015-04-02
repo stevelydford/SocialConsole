@@ -61,11 +61,25 @@ namespace SocialConsole.Tests
         [Test]
         public void AllowAUserToFollowAnother()
         {
+            _messageHandler.Process("bob");
              _messageHandler.Process("alice follows bob");
             
             var user = _userRepository.GetUser("alice");
 
             Assert.That(user.Friends[0].Name, Is.EqualTo("bob"));
+        }
+
+        [Test]
+        public void GetPostsFromAllFriends()
+        {
+            _messageHandler.Process("alice -> this is a test from Alice");
+            _messageHandler.Process("bob -> this is a test from Bob");
+            _messageHandler.Process("colin follows alice");
+            _messageHandler.Process("colin follows bob");
+
+            var result = _messageHandler.Process("colin wall");
+
+            Assert.That(result[0], Is.EqualTo("alice - this is a test from Alice (0 seconds ago)"));
         }
     }
 }

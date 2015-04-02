@@ -28,7 +28,11 @@ namespace SocialConsole
             }
             else if (arguments[1] == "follows")
             {
-                user.Friends.Add(new User(arguments[2]));
+                user.Friends.Add(_userRepository.GetUser(arguments[2]));
+            }
+            else if (arguments[1] == "wall")
+            {
+                response.AddRange(user.GetWall());
             }
 
             return response;
