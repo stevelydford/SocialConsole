@@ -19,27 +19,34 @@ namespace SocialConsole.Tests
         {
             var user = new User("test");
 
-            Assert.That(user.GetPosts(), Is.Not.Null);
+            Assert.That(user.Posts, Is.Not.Null);
         }
 
         [Test]
         public void TimestampPosts()
         {
             var user = new User("test");
-            user.AddPost("this is a test");
+            user.Posts.Add(new Post("this is a test"));
 
-            Assert.That(user.GetPosts()[0].Timestamp, Is.GreaterThan(DateTime.Now.AddMinutes(-1)));
+            Assert.That(user.Posts[0].Timestamp, Is.GreaterThan(DateTime.Now.AddMinutes(-1)));
         }
 
         [Test]
         public void ReturnAllPostsWhenRequested()
         {
             var user = new User("test");
-            user.AddPost("test post 1");
-            user.AddPost("test post 2");
-            user.AddPost("test post 3");
+            user.Posts.Add(new Post("test post 1"));
+            user.Posts.Add(new Post("test post 2"));
+            user.Posts.Add(new Post("test post 3"));
 
-            Assert.That(user.GetPosts().Count, Is.EqualTo(3));
+            Assert.That(user.Posts.Count, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void HaveANewListOfFriendsCreatedOnInstantiation()
+        {
+            var user = new User("test");
+            Assert.That(user.Friends, Is.Not.Null);
         }
     }
 }

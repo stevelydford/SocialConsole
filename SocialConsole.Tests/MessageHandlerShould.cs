@@ -37,7 +37,7 @@ namespace SocialConsole.Tests
         {
             _messageHandler.Process("alice -> this is a test");
 
-            Assert.That(_userRepository.GetUser("alice").GetPosts().Count == 1);
+            Assert.That(_userRepository.GetUser("alice").Posts.Count == 1);
         }
         
         [Test]
@@ -56,6 +56,16 @@ namespace SocialConsole.Tests
             var result = _messageHandler.Process("bob");
 
             Assert.That(result.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void AllowAUserToFollowAnother()
+        {
+             _messageHandler.Process("alice follows bob");
+            
+            var user = _userRepository.GetUser("alice");
+
+            Assert.That(user.Friends[0].Name, Is.EqualTo("bob"));
         }
     }
 }
