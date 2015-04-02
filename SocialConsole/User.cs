@@ -20,24 +20,16 @@ namespace SocialConsole
 
         public List<string> GetWall()
         {
-            var allPosts = new List<WallPost>();
+            var wallPosts = new List<WallPost>();
 
             foreach (var friend in Friends)
             {
-                foreach (var post in friend.Posts)
-                {
-                    var wallPost = new WallPost { User = friend, Post = post };
-                    allPosts.Add(wallPost);
-                }
+                wallPosts.AddRange(friend.Posts.Select(post => new WallPost { User = friend, Post = post }));
             }
 
-            var wallPosts = new List<string>();
-            foreach (var post in allPosts.OrderBy(o => o.Post.Timestamp))
-            {
-                wallPosts.Add(string.Format("{0} - {1}", post.User.Name, post.Post.ToString()));
-            }
-
-            return wallPosts;
+            return wallPosts.OrderBy(o => o.Post.Timestamp)
+                .Select(post => string.Format("{0} - {1}", post.User.Name, post.Post.ToString()))
+                .ToList();
         }
 
         private class WallPost

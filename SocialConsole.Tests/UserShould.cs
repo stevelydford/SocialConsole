@@ -62,9 +62,9 @@ namespace SocialConsole.Tests
 
             var result = user.GetWall();
 
-            Assert.That(result[0], Is.EqualTo("test 1 (0 seconds ago)"));
-            Assert.That(result[1], Is.EqualTo("test 2 (0 seconds ago)"));
-            Assert.That(result[2], Is.EqualTo("test 3 (0 seconds ago)"));
+            Assert.That(result[0], Is.EqualTo("alice - test 1 (0 seconds ago)"));
+            Assert.That(result[1], Is.EqualTo("alice - test 2 (0 seconds ago)"));
+            Assert.That(result[2], Is.EqualTo("alice - test 3 (0 seconds ago)"));
 
         }
 
@@ -84,9 +84,9 @@ namespace SocialConsole.Tests
 
             var result = user.GetWall();
 
-            Assert.That(result[0], Is.EqualTo("userFriend1 test 1 (2 seconds ago)"));
-            Assert.That(result[1], Is.EqualTo("userFriend2 test 1 (1 second ago)"));
-            Assert.That(result[2], Is.EqualTo("userFriend1 test 2 (0 seconds ago)"));
+            Assert.That(result[0], Is.EqualTo("alice - userFriend1 test 1 (2 seconds ago)"));
+            Assert.That(result[1], Is.EqualTo("bob - userFriend2 test 1 (1 second ago)"));
+            Assert.That(result[2], Is.EqualTo("alice - userFriend1 test 2 (0 seconds ago)"));
 
         }
     }
