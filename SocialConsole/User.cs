@@ -27,7 +27,7 @@ namespace SocialConsole
                 wallPosts.AddRange(friend.Posts.Select(post => new WallPost { User = friend, Post = post }));
             }
 
-            return wallPosts.OrderBy(o => o.Post.Timestamp)
+            return wallPosts.OrderByDescending(o => o.Post.Timestamp)
                 .Select(post => string.Format("{0} - {1}", post.User.Name, post.Post.ToString()))
                 .ToList();
         }

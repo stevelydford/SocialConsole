@@ -1,26 +1,13 @@
-﻿using System;
-using System.Data.Odbc;
-
-namespace SocialConsole
+﻿namespace SocialConsole
 {
     public class Program
     {
-        private static readonly MessageHandler MessageHandler = new MessageHandler(new UserRepository());
-
-        static void Main(string[] args)
+        public static int Main(string[] args)
         {
-            while (true)
-            {
-                Console.Write("> ");
-                var input = Console.ReadLine();
+            var consoleHandler = new ConsoleHandler();
+            consoleHandler.Handle();
 
-                var response = MessageHandler.Process(input);
-
-                foreach (var item in response)
-                {
-                    Console.WriteLine(item);
-                }
-            }
+            return 0;
         }
     }
 }

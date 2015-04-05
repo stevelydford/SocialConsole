@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.IO;
 using NUnit.Framework;
 
 namespace SocialConsole.Tests
@@ -7,13 +8,14 @@ namespace SocialConsole.Tests
     public class ProgramShould
     {
         [Test]
-        public void SendTheUserInputToTheMessageHandlerAndReceiveAListOfStringsInResponse()
+        public void CallTheHandleMethodOfTheConsoleHandler()
         {
-            var messageHandler = new MessageHandler(new UserRepository());
-            const string inputString = "alice follows bob";
+            var stringReader = new StringReader("exit");
+            Console.SetIn(stringReader);
 
-            var result = messageHandler.Process(inputString);
-            Assert.That(result, Is.TypeOf<List<string>>());
+            var result = Program.Main(new string[] { });
+            
+            Assert.That(result, Is.EqualTo(0));
         }
     }
 }

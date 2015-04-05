@@ -71,22 +71,22 @@ namespace SocialConsole.Tests
         [Test]
         public void ReturnAllPostsFromAllFriendsInChronologicalOrderWhenTheUserHasMultipleFriends()
         {
-            var userFriend1 = new User("alice");
-            var userFriend2 = new User("bob");
+            var userAlice = new User("alice");
+            var userBob = new User("bob");
 
-            userFriend1.Posts.Add(new Post("userFriend1 test 1") { Timestamp = DateTime.Now.AddSeconds(-2) });
-            userFriend2.Posts.Add(new Post("userFriend2 test 1") { Timestamp = DateTime.Now.AddSeconds(-1) });
-            userFriend1.Posts.Add(new Post("userFriend1 test 2") { Timestamp = DateTime.Now });
+            userAlice.Posts.Add(new Post("userAlice test 1") { Timestamp = DateTime.Now });
+            userBob.Posts.Add(new Post("userBob test 1") { Timestamp = DateTime.Now.AddSeconds(-1) });
+            userAlice.Posts.Add(new Post("userAlice test 2") { Timestamp = DateTime.Now.AddSeconds(-2) });
 
-            var user = new User("colin");
-            user.Friends.Add(userFriend1);
-            user.Friends.Add(userFriend2);
+            var userColin = new User("colin");
+            userColin.Friends.Add(userAlice);
+            userColin.Friends.Add(userBob);
 
-            var result = user.GetWall();
+            var result = userColin.GetWall();
 
-            Assert.That(result[0], Is.EqualTo("alice - userFriend1 test 1 (2 seconds ago)"));
-            Assert.That(result[1], Is.EqualTo("bob - userFriend2 test 1 (1 second ago)"));
-            Assert.That(result[2], Is.EqualTo("alice - userFriend1 test 2 (0 seconds ago)"));
+            Assert.That(result[0], Is.EqualTo("alice - userAlice test 1 (0 seconds ago)"));
+            Assert.That(result[1], Is.EqualTo("bob - userBob test 1 (1 second ago)"));
+            Assert.That(result[2], Is.EqualTo("alice - userAlice test 2 (2 seconds ago)"));
 
         }
     }
