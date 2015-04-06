@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocialConsole
+namespace SocialConsole.Domain
 {
     public class Post
     {

@@ -43,11 +43,11 @@
     <Compile Include="Commands\WallCommandShould.cs" />
     <Compile Include="ConsoleHandlerShould.cs" />
     <Compile Include="MessageHandlerShould.cs" />
-    <Compile Include="PostShould.cs" />
+    <Compile Include="Domain\PostShould.cs" />
     <Compile Include="ProgramShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UserRepositoryShould.cs" />
-    <Compile Include="UserShould.cs" />
+    <Compile Include="Domain\UserShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace SocialConsole
+namespace SocialConsole.Domain
 {
     public class User
     {

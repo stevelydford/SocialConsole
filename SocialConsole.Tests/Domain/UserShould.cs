@@ -1,7 +1,8 @@
 ﻿using System;
 using NUnit.Framework;
+using SocialConsole.Domain;
 
-namespace SocialConsole.Tests
+namespace SocialConsole.Tests.Domain
 {
     [TestFixture]
     public class UserShould

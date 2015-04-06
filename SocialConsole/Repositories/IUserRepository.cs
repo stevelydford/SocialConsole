@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SocialConsole.Domain;
 
 namespace SocialConsole.Repositories
 {
