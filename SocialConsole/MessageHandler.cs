@@ -20,44 +20,47 @@ namespace SocialConsole
             var arguments = ParseArguments(input);
             var response = new List<string>();
             _userRepository.RegisterUser(arguments[0]);
+            var commandArgument = "";
 
-            if (arguments.Count == 1)
+            commandArgument = arguments.Count == 1 ? "userPosts" : arguments[1];
+
+            switch (commandArgument)
             {
-                var command = new UserPostsCommand();
-                var commandResponse = command.Execute(arguments, _userRepository);
-                if (commandResponse.Status == CommandResponseStatus.Ok)
-                {
-                    response.AddRange(commandResponse.Payload);
-                }
+                case "userPosts":
+                    {
+                        var command = new UserPostsCommand();
+                        var commandResponse = command.Execute(arguments, _userRepository);
+                        if (commandResponse.Status == CommandResponseStatus.Ok)
+                        {
+                            response.AddRange(commandResponse.Payload);
+                        }
+                    }
+                    break;
+                case "->":
+                    {
+                        var command = new AddPostCommand();
+                        command.Execute(arguments, _userRepository);
+                    }
+                    break;
 
+                case "follows":
+                    {
+                        var command = new FollowCommand();
+                        command.Execute(arguments, _userRepository);
+                    }
+                    break;
+
+                case "wall":
+                    {
+                        var command = new WallCommand();
+                        var commandResponse = command.Execute(arguments, _userRepository);
+                        if (commandResponse.Status == CommandResponseStatus.Ok)
+                        {
+                            response.AddRange(commandResponse.Payload);
+                        }
+                    }
+                    break;
             }
-            else switch (arguments[1])
-                {
-                    case "->":
-                        {
-                            var command = new AddPostCommand();
-                            command.Execute(arguments, _userRepository);
-                        }
-                        break;
-
-                    case "follows":
-                        {
-                            var command = new FollowCommand();
-                            command.Execute(arguments, _userRepository);
-                        }
-                        break;
-
-                    case "wall":
-                        {
-                            var command = new WallCommand();
-                            var commandResponse = command.Execute(arguments, _userRepository);
-                            if (commandResponse.Status == CommandResponseStatus.Ok)
-                            {
-                                response.AddRange(commandResponse.Payload);
-                            }
-                        }
-                        break;
-                }
 
             return response;
         }
