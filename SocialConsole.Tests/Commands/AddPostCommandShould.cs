@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 using SocialConsole.Commands;
+using SocialConsole.Repositories;
 
 namespace SocialConsole.Tests.Commands
 {

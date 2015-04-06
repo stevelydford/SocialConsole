@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SocialConsole
+namespace SocialConsole.Repositories
 {
     public interface IUserRepository
     {

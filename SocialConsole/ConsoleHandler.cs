@@ -1,4 +1,5 @@
 ﻿using System;
+using SocialConsole.Repositories;
 
 namespace SocialConsole
 {

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using SocialConsole.Commands;
+using SocialConsole.Repositories;
 
 namespace SocialConsole
 {

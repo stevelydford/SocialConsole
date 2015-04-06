@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using SocialConsole.Repositories;
 
-namespace SocialConsole.Tests
+namespace SocialConsole.Tests.Repositories
 {
     [TestFixture]
     public class UserRepositoryShould

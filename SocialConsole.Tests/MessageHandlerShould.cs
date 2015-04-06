@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using SocialConsole.Repositories;
 
 namespace SocialConsole.Tests
 {
