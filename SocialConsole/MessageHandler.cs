@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using SocialConsole.Commands;
 
 namespace SocialConsole
 {
@@ -24,24 +26,25 @@ namespace SocialConsole
             }
             else if (arguments[1] == "->")
             {
-                AddUserPost(arguments, user);
+                var command = new AddPostCommand();
+                command.Execute(arguments, _userRepository);
             }
             else if (arguments[1] == "follows")
             {
-                user.Friends.Add(_userRepository.GetUser(arguments[2]));
+                var command = new FollowCommand();
+                command.Execute(arguments, _userRepository);
             }
             else if (arguments[1] == "wall")
             {
-                response.AddRange(user.GetWall());
+                var command = new WallCommand();
+                var commandResponse = command.Execute(arguments, _userRepository);
+                if (commandResponse.Status == CommandResponseStatus.Ok)
+                {
+                    response.AddRange(commandResponse.Payload);
+                }
             }
 
             return response;
-        }
-
-        private static void AddUserPost(IReadOnlyCollection<string> arguments, User user)
-        {
-            var post = string.Join(" ", arguments.Skip(2).Take(arguments.Count - 2));
-            user.Posts.Add(new Post(post));
         }
 
         private static List<string> ParseArguments(string input)

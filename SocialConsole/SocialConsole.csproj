@@ -37,6 +37,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddPostCommand.cs" />
+    <Compile Include="Commands\CommandResponse.cs" />
+    <Compile Include="Commands\FollowCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\WallCommand.cs" />
     <Compile Include="ConsoleHandler.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="MessageHandler.cs" />

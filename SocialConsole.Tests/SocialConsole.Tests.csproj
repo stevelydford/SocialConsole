@@ -37,6 +37,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddPostCommandShould.cs" />
+    <Compile Include="Commands\CommandResponseShould.cs" />
+    <Compile Include="Commands\FollowCommandShould.cs" />
     <Compile Include="ConsoleHandlerShould.cs" />
     <Compile Include="MessageHandlerShould.cs" />
     <Compile Include="PostShould.cs" />
