@@ -1,5 +1,3 @@
-# (Very) Simple Rules Engine #
+# Social Console #
 
-A simple rules engine written as a very quick proof of concept.
-
-The easiest way to see it's usage is by inspecting the integration tests.
+A simple twitter-like social networking console application.
