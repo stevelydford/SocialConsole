@@ -23,8 +23,12 @@ namespace SocialConsole.Tests.Commands
             var userRepository = new UserRepository();
             userRepository.RegisterUser("alice");
 
-            var addPostCommand = new AddPostCommand();
-            addPostCommand.Execute(arguments, userRepository);
+            var addPostCommand = new AddPostCommand()
+            {
+                Arguments = arguments,
+                UserRepository = userRepository
+            };
+            addPostCommand.Execute();
 
             Assert.That(userRepository.GetUser("alice").Posts.Count == 1);
             Assert.That(userRepository.GetUser("alice").Posts[0].Body, Is.EqualTo("this is a test"));
@@ -42,8 +46,12 @@ namespace SocialConsole.Tests.Commands
             var userRepository = new UserRepository();
             userRepository.RegisterUser("alice");
 
-            var addPostCommand = new AddPostCommand();
-            var commandResult = addPostCommand.Execute(arguments, userRepository);
+            var addPostCommand = new AddPostCommand()
+            {
+                Arguments = arguments,
+                UserRepository = userRepository
+            };
+            var commandResult = addPostCommand.Execute();
 
             Assert.That(commandResult.Status, Is.EqualTo(CommandResponseStatus.Ok));
         }
@@ -60,8 +68,12 @@ namespace SocialConsole.Tests.Commands
             var userRepository = new UserRepository();
             userRepository.RegisterUser("alice");
 
-            var addPostCommand = new AddPostCommand();
-            var commandResult = addPostCommand.Execute(arguments, userRepository);
+            var addPostCommand = new AddPostCommand()
+            {
+                Arguments = arguments,
+                UserRepository = userRepository
+            };
+            var commandResult = addPostCommand.Execute();
 
             Assert.That(commandResult.Payload, Is.Empty);
         }
@@ -73,8 +85,13 @@ namespace SocialConsole.Tests.Commands
             var userRepository = new UserRepository();
             userRepository.RegisterUser("alice");
 
-            var addPostCommand = new AddPostCommand();
-            var commandResult = addPostCommand.Execute(emptyArgumentsList, userRepository);
+            var addPostCommand = new AddPostCommand()
+            {
+                Arguments = emptyArgumentsList,
+                UserRepository = userRepository
+            };
+
+            var commandResult = addPostCommand.Execute();
 
             Assert.That(commandResult.Status, Is.EqualTo(CommandResponseStatus.Error));
         }
@@ -86,8 +103,13 @@ namespace SocialConsole.Tests.Commands
             var userRepository = new UserRepository();
             userRepository.RegisterUser("alice");
 
-            var addPostCommand = new AddPostCommand();
-            var commandResult = addPostCommand.Execute(emptyArgumentsList, userRepository);
+            var addPostCommand = new AddPostCommand()
+            {
+                Arguments = emptyArgumentsList,
+                UserRepository = userRepository
+            };
+
+            var commandResult = addPostCommand.Execute();
 
             Assert.That(commandResult.Payload[0].StartsWith("System.ArgumentOutOfRangeException"));
         }

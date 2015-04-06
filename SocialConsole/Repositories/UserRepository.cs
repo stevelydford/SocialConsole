@@ -35,7 +35,5 @@ namespace SocialConsole.Repositories
         {
             return _users;
         }
-
-
     }
 }

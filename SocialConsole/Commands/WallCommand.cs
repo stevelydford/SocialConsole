@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using SocialConsole.Repositories;
 
 namespace SocialConsole.Commands
 {
     public class WallCommand : ICommand
     {
-        public CommandResponse Execute(List<string> arguments, IUserRepository userRepository)
+        public List<string> Arguments { get; set; }
+        public IUserRepository UserRepository { get; set; }
+
+        public CommandResponse Execute()
         {
             try
             {
-                var user = userRepository.GetUser(arguments[0]);
+                var user = UserRepository.GetUser(Arguments[0]);
                 var response = new CommandResponse(CommandResponseStatus.Ok, user.GetWall());
                 return response;
             }

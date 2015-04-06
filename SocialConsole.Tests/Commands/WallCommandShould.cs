@@ -10,7 +10,7 @@ namespace SocialConsole.Tests.Commands
     public class WallCommandShould
     {
         [Test]
-        public void ReturnAllPostsOnAUsersWallWhenExecuted()
+        public void ReturnAllPostsOnAUsersWallInPayloadWhenSuccessfullyExecuted()
         {
             var userRepository = new UserRepository();
             var user = userRepository.RegisterUser("alice");
@@ -29,8 +29,12 @@ namespace SocialConsole.Tests.Commands
                 "wall"
             };
 
-            var wallCommand = new WallCommand();
-            var commandResult = wallCommand.Execute(arguments, userRepository);
+            var wallCommand = new WallCommand()
+            {
+                Arguments = arguments,
+                UserRepository = userRepository
+            };
+            var commandResult = wallCommand.Execute();
 
             Assert.That(commandResult.Payload.Count, Is.EqualTo(3));
             Assert.That(commandResult.Payload[0], Is.EqualTo("bob - test1 (0 seconds ago)"));
@@ -49,8 +53,12 @@ namespace SocialConsole.Tests.Commands
             var userRepository = new UserRepository();
             userRepository.RegisterUser("alice");
 
-            var wallCommand = new WallCommand();
-            var commandResult = wallCommand.Execute(arguments, userRepository);
+            var wallCommand = new WallCommand()
+            {
+                Arguments = arguments,
+                UserRepository = userRepository
+            };
+            var commandResult = wallCommand.Execute();
 
             Assert.That(commandResult.Status, Is.EqualTo(CommandResponseStatus.Ok));
         }
@@ -65,8 +73,12 @@ namespace SocialConsole.Tests.Commands
             };
             var emptyUserRepository = new UserRepository();
 
-            var wallCommand = new WallCommand();
-            var commandResult = wallCommand.Execute(arguments, emptyUserRepository);
+            var wallCommand = new WallCommand()
+            {
+                Arguments = arguments,
+                UserRepository = emptyUserRepository
+            };
+            var commandResult = wallCommand.Execute();
 
             Assert.That(commandResult.Status, Is.EqualTo(CommandResponseStatus.Error));
         }
@@ -81,8 +93,12 @@ namespace SocialConsole.Tests.Commands
             };
             var emptyUserRepository = new UserRepository();
 
-            var wallCommand = new WallCommand();
-            var commandResult = wallCommand.Execute(arguments, emptyUserRepository);
+            var wallCommand = new WallCommand()
+            {
+                Arguments = arguments,
+                UserRepository = emptyUserRepository
+            };
+            var commandResult = wallCommand.Execute();
 
             Assert.That(commandResult.Payload[0].StartsWith("System.NullReferenceException"));
         }

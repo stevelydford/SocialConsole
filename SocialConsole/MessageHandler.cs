@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using SocialConsole.Commands;
 using SocialConsole.Repositories;
 
@@ -18,50 +17,18 @@ namespace SocialConsole
         public List<string> Process(string input)
         {
             var arguments = ParseArguments(input);
-            var response = new List<string>();
             _userRepository.RegisterUser(arguments[0]);
-            var commandArgument = "";
+            var response = new List<string>();
 
-            commandArgument = arguments.Count == 1 ? "userPosts" : arguments[1];
-
-            switch (commandArgument)
+            var commandFactory = new CommandFactory();
+            var command = commandFactory.CreateCommand(arguments, _userRepository);
+            
+            var commandResponse = command.Execute();
+            if (commandResponse.Status == CommandResponseStatus.Ok && commandResponse.Payload.Count > 0)
             {
-                case "userPosts":
-                    {
-                        var command = new UserPostsCommand();
-                        var commandResponse = command.Execute(arguments, _userRepository);
-                        if (commandResponse.Status == CommandResponseStatus.Ok)
-                        {
-                            response.AddRange(commandResponse.Payload);
-                        }
-                    }
-                    break;
-                case "->":
-                    {
-                        var command = new AddPostCommand();
-                        command.Execute(arguments, _userRepository);
-                    }
-                    break;
-
-                case "follows":
-                    {
-                        var command = new FollowCommand();
-                        command.Execute(arguments, _userRepository);
-                    }
-                    break;
-
-                case "wall":
-                    {
-                        var command = new WallCommand();
-                        var commandResponse = command.Execute(arguments, _userRepository);
-                        if (commandResponse.Status == CommandResponseStatus.Ok)
-                        {
-                            response.AddRange(commandResponse.Payload);
-                        }
-                    }
-                    break;
+                response.AddRange(commandResponse.Payload);
             }
-
+            
             return response;
         }
 

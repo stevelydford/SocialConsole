@@ -5,7 +5,6 @@ namespace SocialConsole.Domain
     public class Post
     {
         public string Body { get; set; }
-
         public DateTime Timestamp { get; set; }
 
         public Post(string body)

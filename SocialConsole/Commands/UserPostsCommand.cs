@@ -7,11 +7,14 @@ namespace SocialConsole.Commands
 {
     public class UserPostsCommand : ICommand
     {
-        public CommandResponse Execute(List<string> arguments, IUserRepository userRepository)
+        public List<string> Arguments { get; set; }
+        public IUserRepository UserRepository { get; set; }
+
+        public CommandResponse Execute()
         {
             try
             {
-                var user = userRepository.GetUser(arguments[0]);
+                var user = UserRepository.GetUser(Arguments[0]);
                 var payload = new List<string>();
                 payload.AddRange(user.Posts.Select(post => post.ToString()));
                 var response = new CommandResponse(CommandResponseStatus.Ok, payload);

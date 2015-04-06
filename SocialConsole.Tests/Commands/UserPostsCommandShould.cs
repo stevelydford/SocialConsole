@@ -10,21 +10,25 @@ namespace SocialConsole.Tests.Commands
     public class UserPostsCommandShould
     {
         [Test]
-        public void ReturnAllUserPostsWhenExecuted()
+        public void ReturnAllUserPostsInPayloadWhenSuccessfullyExecuted()
         {
             var userRepository = new UserRepository();
             var user = userRepository.RegisterUser("alice");
             user.Posts.AddRange(
                 new List<Post> { new Post("test1"), new Post("test2") }
             );
-         
+
             var arguments = new List<string>
             {
                 "alice"
             };
 
-            var userPostsCommand = new UserPostsCommand();
-            var commandResult = userPostsCommand.Execute(arguments, userRepository);
+            var userPostsCommand = new UserPostsCommand()
+            {
+                Arguments = arguments,
+                UserRepository = userRepository
+            };
+            var commandResult = userPostsCommand.Execute();
 
             Assert.That(commandResult.Payload.Count, Is.EqualTo(2));
             Assert.That(commandResult.Payload[0], Is.EqualTo("test1 (0 seconds ago)"));
@@ -41,8 +45,12 @@ namespace SocialConsole.Tests.Commands
             var userRepository = new UserRepository();
             userRepository.RegisterUser("alice");
 
-            var userPostsCommand = new UserPostsCommand();
-            var commandResult = userPostsCommand.Execute(arguments, userRepository);
+            var userPostsCommand = new UserPostsCommand()
+            {
+                Arguments = arguments,
+                UserRepository = userRepository
+            };
+            var commandResult = userPostsCommand.Execute();
 
             Assert.That(commandResult.Status, Is.EqualTo(CommandResponseStatus.Ok));
         }
@@ -56,8 +64,12 @@ namespace SocialConsole.Tests.Commands
             };
             var emptyUserRepository = new UserRepository();
 
-            var userPostsCommand = new UserPostsCommand();
-            var commandResult = userPostsCommand.Execute(arguments, emptyUserRepository);
+            var userPostsCommand = new UserPostsCommand()
+            {
+                Arguments = arguments,
+                UserRepository = emptyUserRepository
+            };
+            var commandResult = userPostsCommand.Execute();
 
             Assert.That(commandResult.Status, Is.EqualTo(CommandResponseStatus.Error));
         }
@@ -71,8 +83,12 @@ namespace SocialConsole.Tests.Commands
             };
             var emptyUserRepository = new UserRepository();
 
-            var userPostsCommand = new UserPostsCommand();
-            var commandResult = userPostsCommand.Execute(arguments, emptyUserRepository);
+            var userPostsCommand = new UserPostsCommand()
+            {
+                Arguments = arguments,
+                UserRepository = emptyUserRepository
+            };
+            var commandResult = userPostsCommand.Execute();
 
             Assert.That(commandResult.Payload[0].StartsWith("System.NullReferenceException"));
         }

@@ -6,12 +6,15 @@ namespace SocialConsole.Commands
 {
     public class FollowCommand : ICommand
     {
-        public CommandResponse Execute(List<string> arguments, IUserRepository userRepository)
+        public List<string> Arguments { get; set; }
+        public IUserRepository UserRepository { get; set; }
+
+        public CommandResponse Execute()
         {
             try
             {
-                var user = userRepository.GetUser(arguments[0]);
-                user.Friends.Add(userRepository.GetUser(arguments[2]));
+                var user = UserRepository.GetUser(Arguments[0]);
+                user.Friends.Add(UserRepository.GetUser(Arguments[2]));
                 return new CommandResponse(CommandResponseStatus.Ok);
             }
             catch (Exception exception)

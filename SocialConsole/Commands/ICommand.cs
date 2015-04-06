@@ -5,6 +5,9 @@ namespace SocialConsole.Commands
 {
     public interface ICommand
     {
-       CommandResponse Execute(List<string> arguments, IUserRepository userRepository);
+        List<string> Arguments { get; set; }
+        IUserRepository UserRepository { get; set; }
+
+        CommandResponse Execute();
     }
 }

@@ -19,7 +19,7 @@ namespace SocialConsole.Tests.Commands
         }
 
         [Test]
-        public void SetTheStatusAndEmptyPayloadOnConstructionIfNoPayloadPassedIn()
+        public void SetTheStatusAndAnEmptyPayloadOnConstructionIfNoPayloadPassedIn()
         {
             var commandResponse = new CommandResponse(CommandResponseStatus.Ok);
 

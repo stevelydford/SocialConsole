@@ -6,9 +6,7 @@ namespace SocialConsole.Domain
     public class User
     {
         public List<Post> Posts;
-
         public List<User> Friends;
-
         public string Name { get; set; }
 
         public User(string name)

@@ -38,8 +38,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddPostCommandShould.cs" />
+    <Compile Include="Commands\CommandFactoryShould.cs" />
     <Compile Include="Commands\CommandResponseShould.cs" />
     <Compile Include="Commands\FollowCommandShould.cs" />
+    <Compile Include="Commands\NullCommandShould.cs" />
     <Compile Include="Commands\UserPostsCommandShould.cs" />
     <Compile Include="Commands\WallCommandShould.cs" />
     <Compile Include="ConsoleHandlerShould.cs" />

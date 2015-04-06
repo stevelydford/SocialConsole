@@ -8,12 +8,15 @@ namespace SocialConsole.Commands
 {
     public class AddPostCommand : ICommand
     {
-        public CommandResponse Execute(List<string> arguments, IUserRepository userRepository)
+        public List<string> Arguments { get; set; }
+        public IUserRepository UserRepository { get; set; }
+
+        public CommandResponse Execute()
         {
             try
             {
-                var user = userRepository.GetUser(arguments[0]);
-                var post = string.Join(" ", arguments.Skip(2).Take(arguments.Count - 2));
+                var user = UserRepository.GetUser(Arguments[0]);
+                var post = string.Join(" ", Arguments.Skip(2).Take(Arguments.Count - 2));
                 user.Posts.Add(new Post(post));
                 return new CommandResponse(CommandResponseStatus.Ok);
             }

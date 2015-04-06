@@ -66,7 +66,6 @@ namespace SocialConsole.Tests.Domain
             Assert.That(result[0], Is.EqualTo("alice - test 1 (0 seconds ago)"));
             Assert.That(result[1], Is.EqualTo("alice - test 2 (0 seconds ago)"));
             Assert.That(result[2], Is.EqualTo("alice - test 3 (0 seconds ago)"));
-
         }
 
         [Test]
@@ -88,7 +87,6 @@ namespace SocialConsole.Tests.Domain
             Assert.That(result[0], Is.EqualTo("alice - userAlice test 1 (0 seconds ago)"));
             Assert.That(result[1], Is.EqualTo("bob - userBob test 1 (1 second ago)"));
             Assert.That(result[2], Is.EqualTo("alice - userAlice test 2 (2 seconds ago)"));
-
         }
     }
 }
