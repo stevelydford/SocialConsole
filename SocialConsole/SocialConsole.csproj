@@ -41,6 +41,7 @@
     <Compile Include="Commands\CommandResponse.cs" />
     <Compile Include="Commands\FollowCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\UserPostsCommand.cs" />
     <Compile Include="Commands\WallCommand.cs" />
     <Compile Include="ConsoleHandler.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />

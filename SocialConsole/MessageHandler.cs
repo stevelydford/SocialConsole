@@ -19,31 +19,45 @@ namespace SocialConsole
         {
             var arguments = ParseArguments(input);
             var response = new List<string>();
-            var user = _userRepository.RegisterUser(arguments[0]);
+            _userRepository.RegisterUser(arguments[0]);
 
             if (arguments.Count == 1)
             {
-                response.AddRange(user.Posts.Select(post => post.ToString()));
-            }
-            else if (arguments[1] == "->")
-            {
-                var command = new AddPostCommand();
-                command.Execute(arguments, _userRepository);
-            }
-            else if (arguments[1] == "follows")
-            {
-                var command = new FollowCommand();
-                command.Execute(arguments, _userRepository);
-            }
-            else if (arguments[1] == "wall")
-            {
-                var command = new WallCommand();
+                var command = new UserPostsCommand();
                 var commandResponse = command.Execute(arguments, _userRepository);
                 if (commandResponse.Status == CommandResponseStatus.Ok)
                 {
                     response.AddRange(commandResponse.Payload);
                 }
+
             }
+            else switch (arguments[1])
+                {
+                    case "->":
+                        {
+                            var command = new AddPostCommand();
+                            command.Execute(arguments, _userRepository);
+                        }
+                        break;
+
+                    case "follows":
+                        {
+                            var command = new FollowCommand();
+                            command.Execute(arguments, _userRepository);
+                        }
+                        break;
+
+                    case "wall":
+                        {
+                            var command = new WallCommand();
+                            var commandResponse = command.Execute(arguments, _userRepository);
+                            if (commandResponse.Status == CommandResponseStatus.Ok)
+                            {
+                                response.AddRange(commandResponse.Payload);
+                            }
+                        }
+                        break;
+                }
 
             return response;
         }
