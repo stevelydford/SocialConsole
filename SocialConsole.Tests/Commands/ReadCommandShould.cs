@@ -7,7 +7,7 @@ using SocialConsole.Repositories;
 namespace SocialConsole.Tests.Commands
 {
     [TestFixture]
-    public class UserPostsCommandShould
+    public class ReadCommandShould
     {
         [Test]
         public void ReturnAllUserPostsInPayloadWhenSuccessfullyExecuted()
@@ -23,12 +23,12 @@ namespace SocialConsole.Tests.Commands
                 "alice"
             };
 
-            var userPostsCommand = new UserPostsCommand()
+            var readCommand = new ReadCommand()
             {
                 Arguments = arguments,
                 UserRepository = userRepository
             };
-            var commandResult = userPostsCommand.Execute();
+            var commandResult = readCommand.Execute();
 
             Assert.That(commandResult.Payload.Count, Is.EqualTo(2));
             Assert.That(commandResult.Payload[0], Is.EqualTo("test1 (0 seconds ago)"));
@@ -45,12 +45,12 @@ namespace SocialConsole.Tests.Commands
             var userRepository = new UserRepository();
             userRepository.RegisterUser("alice");
 
-            var userPostsCommand = new UserPostsCommand()
+            var readCommand = new ReadCommand()
             {
                 Arguments = arguments,
                 UserRepository = userRepository
             };
-            var commandResult = userPostsCommand.Execute();
+            var commandResult = readCommand.Execute();
 
             Assert.That(commandResult.Status, Is.EqualTo(CommandResponseStatus.Ok));
         }
@@ -64,12 +64,12 @@ namespace SocialConsole.Tests.Commands
             };
             var emptyUserRepository = new UserRepository();
 
-            var userPostsCommand = new UserPostsCommand()
+            var readCommand = new ReadCommand()
             {
                 Arguments = arguments,
                 UserRepository = emptyUserRepository
             };
-            var commandResult = userPostsCommand.Execute();
+            var commandResult = readCommand.Execute();
 
             Assert.That(commandResult.Status, Is.EqualTo(CommandResponseStatus.Error));
         }
@@ -83,12 +83,12 @@ namespace SocialConsole.Tests.Commands
             };
             var emptyUserRepository = new UserRepository();
 
-            var userPostsCommand = new UserPostsCommand()
+            var readCommand = new ReadCommand()
             {
                 Arguments = arguments,
                 UserRepository = emptyUserRepository
             };
-            var commandResult = userPostsCommand.Execute();
+            var commandResult = readCommand.Execute();
 
             Assert.That(commandResult.Payload[0].StartsWith("System.NullReferenceException"));
         }

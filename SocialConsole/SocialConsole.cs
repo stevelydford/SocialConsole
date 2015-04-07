@@ -3,7 +3,7 @@ using SocialConsole.Repositories;
 
 namespace SocialConsole
 {
-    public class ConsoleHandler
+    public class SocialConsole
     {
         private static readonly MessageHandler MessageHandler = new MessageHandler(new UserRepository());
 

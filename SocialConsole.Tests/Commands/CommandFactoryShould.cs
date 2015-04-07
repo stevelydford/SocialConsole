@@ -21,7 +21,7 @@ namespace SocialConsole.Tests.Commands
         }
 
         [Test]
-        public void ReturnAUserPostsCommandIfSentOnlyOneArgument()
+        public void ReturnAReadCommandIfSentOnlyOneArgument()
         {
             var arguments = new List<string>() { "alice" };
             var userRepository = new UserRepository();
@@ -29,11 +29,11 @@ namespace SocialConsole.Tests.Commands
             var commandFactory = new CommandFactory();
             var command = commandFactory.CreateCommand(arguments, userRepository);
 
-            Assert.That(command, Is.InstanceOf<UserPostsCommand>());
+            Assert.That(command, Is.InstanceOf<ReadCommand>());
         }
 
         [Test]
-        public void ReturnAnAddPostCommandIfSecondArgumentMatched()
+        public void ReturnAPostCommandIfSecondArgumentMatched()
         {
             var arguments = new List<string>() { "alice", "->", "test" };
             var userRepository = new UserRepository();
@@ -41,7 +41,7 @@ namespace SocialConsole.Tests.Commands
             var commandFactory = new CommandFactory();
             var command = commandFactory.CreateCommand(arguments, userRepository);
 
-            Assert.That(command, Is.InstanceOf<AddPostCommand>());
+            Assert.That(command, Is.InstanceOf<PostCommand>());
         }
 
         [Test]

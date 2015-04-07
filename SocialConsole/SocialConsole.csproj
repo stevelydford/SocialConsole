@@ -37,15 +37,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AddPostCommand.cs" />
+    <Compile Include="Commands\PostCommand.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\CommandResponse.cs" />
     <Compile Include="Commands\FollowCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\NullCommand.cs" />
-    <Compile Include="Commands\UserPostsCommand.cs" />
+    <Compile Include="Commands\ReadCommand.cs" />
     <Compile Include="Commands\WallCommand.cs" />
-    <Compile Include="ConsoleHandler.cs" />
+    <Compile Include="SocialConsole.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="MessageHandler.cs" />
     <Compile Include="Domain\Post.cs" />

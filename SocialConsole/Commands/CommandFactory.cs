@@ -13,17 +13,17 @@ namespace SocialConsole.Commands
                 return command;
             }
 
-            var commandArgument = arguments.Count == 1 ? "userPosts" : arguments[1];
+            var commandArgument = arguments.Count == 1 ? "read" : arguments[1];
             switch (commandArgument)
             {
-                case "userPosts":
+                case "read":
                     {
-                        command = new UserPostsCommand();
+                        command = new ReadCommand();
                     }
                     break;
                 case "->":
                     {
-                        command = new AddPostCommand();
+                        command = new PostCommand();
                     }
                     break;
 

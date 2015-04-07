@@ -5,7 +5,7 @@ using SocialConsole.Repositories;
 
 namespace SocialConsole.Commands
 {
-    public class UserPostsCommand : ICommand
+    public class ReadCommand : ICommand
     {
         public List<string> Arguments { get; set; }
         public IUserRepository UserRepository { get; set; }
