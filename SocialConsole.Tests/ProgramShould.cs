@@ -8,7 +8,7 @@ namespace SocialConsole.Tests
     public class ProgramShould
     {
         [Test]
-        public void CallTheHandleMethodOfTheConsoleHandler()
+        public void CallTheHandleMethodOfSocialConsole()
         {
             var stringReader = new StringReader("exit");
             Console.SetIn(stringReader);

@@ -4,8 +4,8 @@
     {
         public static int Main(string[] args)
         {
-            var consoleHandler = new ConsoleHandler();
-            consoleHandler.Handle();
+            var socialConsole = new SocialConsole();
+            socialConsole.Handle();
 
             return 0;
         }

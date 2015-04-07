@@ -7,7 +7,7 @@ using SocialConsole.Repositories;
 namespace SocialConsole.Tests
 {
     [TestFixture]
-    public class ConsoleHandlerShould
+    public class SocialConsoleShould
     {
         [Test]
         public void SendTheUserInputToTheMessageHandlerAndReceiveAListOfStringsInResponse()
@@ -25,8 +25,8 @@ namespace SocialConsole.Tests
             var stringReader = new StringReader(string.Format("bob->hello{0}bob{0}exit", Environment.NewLine));
             Console.SetIn(stringReader);
 
-            var consoleHandler = new ConsoleHandler();
-            var result = consoleHandler.Handle();
+            var socialConsole = new SocialConsole();
+            var result = socialConsole.Handle();
 
             Assert.That(result, Is.EqualTo(0));
         }
@@ -40,8 +40,8 @@ namespace SocialConsole.Tests
             var stringReader = new StringReader(string.Format("bob -> hello{0}bob -> test{0}bob{0}exit", Environment.NewLine));
             Console.SetIn(stringReader);
 
-            var consoleHandler = new ConsoleHandler();
-            consoleHandler.Handle();
+            var socialConsole = new SocialConsole();
+            socialConsole.Handle();
 
             const string expectedConsoleOutput = "> > > hello (0 seconds ago)\r\ntest (0 seconds ago)\r\n> ";
             
